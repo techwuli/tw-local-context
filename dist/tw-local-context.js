@@ -142,30 +142,56 @@
 
                 };
 
+                var buildName = function(name) {
+                    if (!name) {
+                        console.error('name can not be null.');
+                        throw ('argument null exception');
+                    }
+                    return self.prefix + '_' + name;
+                };
+
                 self.$get = function() {
                     return {
-                        create: function(name, key) {
-                            if (!name) {
-                                console.error('local context name must be set.');
-                            }
+                        getList: function(name, key) {
                             key = key || 'id';
-                            name = self.prefix + '_' + name;
-
+                            name = buildName(name);
                             return new LocalContext(name, key);
                         },
 
-                        removeAll: function() {
+                        get: function(name) {
+                            name = buildName(name);
+                            var value = getStorage().getItem(name);
+
+                            return JSON.parse(value);
+                        },
+
+                        set: function(name, value) {
+                            name = buildName(name);
+                            getStorage().setItem(name, JSON.stringify(value));
+                        },
+
+                        clear: function() {
                             var storage = getStorage();
                             var storageItemLength = storage.length;
                             if (storageItemLength === 0) {
                                 return;
                             }
+
+                            var keys = [];
+
                             for (var i = 0; i < storageItemLength; i++) {
                                 if (storage.key(i).indexOf(self.prefix + '_') === 0) {
-                                    storage.removeItem(storage.key(i));
+                                    keys.push(storage.key(i));
                                 }
                             }
-                        }
+
+                            if (keys.length > 0) {
+                                for (var j = 0; j < keys.length; j++) {
+                                    getStorage().removeItem(keys[j]);
+                                }
+                            }
+                        },
+
                     };
                 };
             }
