@@ -1,0 +1,27 @@
+{
+    "name": "tw-local-context",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+        "start": "gulp serve-sync",
+        "prestart": "npm install",
+        "postinstall": "bower install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/techwuli/tw-local-context.git"
+    },
+    "author": "Zhao Yu <seal8216@hotmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/techwuli/tw-local-context/issues"
+    },
+    "homepage": "https://github.com/techwuli/tw-local-context#readme",
+    "devDependencies": {
+        "browser-sync": "^2.16.0",
+        "gulp": "^3.9.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^2.0.0",
+        "run-sequence": "^1.2.2"
+    }
+}
