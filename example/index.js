@@ -23,12 +23,14 @@
             };
 
             var localContext = twLocalContext.getList('items', 'id');
+            var context2 = twLocalContext.getList('people');
 
             console.log(localContext.data);
 
             localContext.addOrUpdate([zhaoyu]);
 
             console.log(localContext.data);
+            console.log(context2.data);
 
             localContext.addOrUpdate(chenmin);
 
